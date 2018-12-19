@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  table {
+    font-family: "Helvetica Neue", Helvetica, sans-serif
+  }
+
+  caption {
+    text-align: left;
+    color: silver;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px;
+  }
+
+  thead {
+    background: SteelBlue;
+    color: white;
+  }
+
+  th,
+  td {
+    padding: 5px 10px;
+  }
+
+  tbody tr:nth-child(even) {
+    background: WhiteSmoke;
+  }
+
+  tbody tr td:nth-child(2) {
+    text-align: center;
+  }
+
+  tbody tr td:nth-child(3),
+  tbody tr td:nth-child(4) {
+    text-align: right;
+    font-family: monospace;
+  }
+
+  tfoot {
+    background: SeaGreen;
+    color: white;
+    text-align: right;
+  }
+
+  tfoot tr th:last-child {
+    font-family: monospace;
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Nobre Producto</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody id="tabla">
+    </tbody>
+  </table>
+</body>
+
+</html>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBIqqPvDW8YFRV4AtxnkKuyUYpMLnBdfms",
+    authDomain: "webscraping-983d1.firebaseapp.com",
+    databaseURL: "https://webscraping-983d1.firebaseio.com",
+    projectId: "webscraping-983d1",
+    storageBucket: "webscraping-983d1.appspot.com",
+    messagingSenderId: "184684346918"
+  };
+  firebase.initializeApp(config);
+
+  var db = firebase.firestore();
+
+  var table = document.getElementById("tabla");
+  table.innerHTML = "";
+
+
+  db.collection("data")
+    .onSnapshot(function (querySnapshot) {
+
+      querySnapshot.forEach(function (doc) {
+        console.log(" data  => ", doc.data());
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        // asigna a las celdas el valir del Child especificado
+        cell1.innerHTML = doc.data().nameProduct;
+        cell2.innerHTML = doc.data().priceProduct;
+      });
+    });
+</script>
