@@ -7,7 +7,7 @@ Y luego tenemos un archivo index.html que forma parte del ejemplo que su funció
 - Almacenar la información en una variable
 - Transformar la información en un objeto para manipular fácilmente el código HTML que tuvimos como respuesta con librería **beautifulsoup4**
 - Filtrar la información de acuerdo a la estructura HTML que ya debemos saber para obtener solo las etiquetas donde están los datos que nos interesa.
-
+- Almacenar esa información (en este caso la almaceno en una base de datos **firebase** para luego obtener esta información mediante el archivo index.html en tiempo real y visualizarla.
 ### Instalación del proyecto :
 Este proyecto lo levante con [Python](https://python.org/) v3+ especialmente con la versión 3.7.1 .
 
